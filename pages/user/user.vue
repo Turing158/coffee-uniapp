@@ -70,11 +70,13 @@
 	const getUserData = uni.getStorageSync('user')
 	const isLogin = ref(false)
 	const loginRegPage = ref()
-	const toLogin = ()=>{
-		loginRegPage.value.toLogin()
-	}
 	if(uni.getStorageSync('isLogin')){
 		isLogin.value = true
+	}
+	const toLogin = ()=>{
+		if(!isLogin.value){
+			loginRegPage.value.toLogin()
+		}
 	}
 	const made = ref(0)
 	const complete = ref(0)
@@ -99,7 +101,6 @@
 		complete.value = completeTmp
 	}
 	start()
-	
 	const toOrder = ()=>{
 		uni.switchTab({
 			url:'/pages/orderList/orderList'

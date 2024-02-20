@@ -35,64 +35,73 @@
 		}
 	}
 	const getUserOrderList = async ()=>{
-		// if(uni.getStorageSync('isLogin')){
-		// 	let userObj = uni.getStorageSync('user')
-		// 	let userId = userObj.user
-		// 	// 获取订单列表
-			
-		// }
-		// else{
-		// 	uni.showToast({
-		// 		title: '请先登录',
-		// 		icon: 'none'
-		// 	});
-		// }
-		await getGoods().then(res=>{
-			goodsList.value = res.data.data
-		}).catch(err=>{
-			console.log(err);
-			uni.showToast({
-				title: '获取商品信息失败',
-				icon: 'none'
-			});
-		})
-		await getOrderList('admin').then(res=>{
-			let list = []
-			let data = res.data.data
-			for (var i = 0; i < data.length; i++) {
-				let goodsData = JSON.parse(data[i].goods)
-				let goods = []
-				for (var j = 0; j < goodsData.length; j++) {
-					let goodInf = getGoodsInf(goodsData[j].id)
-					goods.push({
-						id:goodsData[j].id,
-						name:goodInf.name,
-						num:goodsData[j].num,
-						img:goodInf.img,
-						price:goodInf.price,
-						temperature:goodsData[j].temperature,
-						sugar:goodsData[j].sugar
+		if(uni.getStorageSync('isLogin')){
+			let userObj = uni.getStorageSync('user')
+			let userId = userObj.user
+			// 获取订单列表
+			await getGoods().then(res=>{
+				goodsList.value = res.data.data
+			}).catch(err=>{
+				console.log(err);
+				uni.showToast({
+					title: '获取商品信息失败',
+					icon: 'none'
+				});
+			})
+			await getOrderList(userId).then(res=>{
+				let list = []
+				let data = res.data.data
+				for (var i = 0; i < data.length; i++) {
+					let goodsData = JSON.parse(data[i].goods)
+					let goods = []
+					for (var j = 0; j < goodsData.length; j++) {
+						let goodInf = getGoodsInf(goodsData[j].id)
+						goods.push({
+							id:goodsData[j].id,
+							name:goodInf.name,
+							num:goodsData[j].num,
+							img:goodInf.img,
+							price:goodInf.price,
+							temperature:goodsData[j].temperature,
+							sugar:goodsData[j].sugar
+						})
+					}
+					list.push({
+						id:data[i].id,
+						goods:goods,
+						user:data[i].user,
+						date:data[i].date,
+						price:data[i].price,
+						status:data[i].status,
+						number:data[i].number,
+						useForm:data[i].useform,//要与传入的数据的json一样
+						reservation:data[i].reservation,
+						note:data[i].note
 					})
 				}
-				list.push({
-					id:data[i].id,
-					goods:goods,
-					user:data[i].user,
-					date:data[i].date,
-					price:data[i].price,
-					status:data[i].status,
-					number:data[i].number
-				})
-			}
-			listData.value = list
-			console.log(listData.value);
-		}).catch(err=>{
-			console.log(err);
-		})
+				if(list.length == 0){
+					uni.showToast({
+						title: '没任何订单，不点一杯？',
+						icon: 'none'
+					})
+				}
+				listData.value = list
+				uni.setStorageSync('orderList',list)
+			}).catch(err=>{
+				console.log(err);
+			})
+		}
+		else{
+			uni.showToast({
+				title: '请先登录',
+				icon: 'none'
+			});
+		}
+		
 		status.value = 'more'
 	}
 	getUserOrderList()
-	// listData.value = uni.getStorageSync('orderList')
+	listData.value = uni.getStorageSync('orderList')
 	if(!uni.getStorageSync('isLogin')){
 		uni.showToast({
 			title: '请先登录',

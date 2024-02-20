@@ -22,7 +22,7 @@
 			</div>
 			<div class="note" @click="openNote()">
 				<span class="title">备注:</span><uni-icons class="icon" type="right" size="16"></uni-icons>
-				<uni-popup ref="notePage" type="bottom" :is-mask-click="true" :animation="true">
+				<uni-popup ref="notePage" type="bottom" :is-mask-click="true" :animation="true" :safe-area="true">
 					<div class="editNote">
 						<p class="title">备注：</p>
 						<span class="tips">tips:点击灰白部分确认关闭</span>
@@ -34,9 +34,6 @@
 			<div class="pay">
 				<span class="price">共{{num}}件 合计:<span class="fuhao">￥</span><span class="sumPrice">{{sum}}</span></span>
 				<button class="btn" @click="finalPay()">支 付</button>
-			</div>
-			<div class="test">
-				{{testMsg}}
 			</div>
 		</div>
 	</view>
@@ -74,19 +71,11 @@
 	const testMsg = ref("")
 	import md5 from  'js-md5'
 	const finalPay = async()=>{
-			
+		
 	}
 </script>
 
 <style scoped>
-	.test{
-		position: absolute;
-		width: 100%;
-		min-height: 1000px;
-		top: 300px;
-		background-color: #fff;
-		z-index: 100;
-	}
 	.payPage{
 		position: relative;
 		background-color: #f1f1f1;
@@ -190,7 +179,8 @@
 		height: 240px;
 		background-color: #fff;
 		border-radius: 10px 10px 0 0;
-		bottom: -40px;
+		/* bottom: -40px; */
+		bottom: 20px;
 	}
 	.note .editNote .title{
 		position: absolute;
