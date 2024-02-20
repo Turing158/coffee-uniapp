@@ -1,0 +1,13 @@
+{
+  "hash": "48166191",
+  "browserHash": "437871aa",
+  "optimized": {
+    "element-plus": {
+      "src": "../../node_modules/.pnpm/element-plus@2.4.4_vue@3.4.3/node_modules/element-plus/es/index.mjs",
+      "file": "element-plus.js",
+      "fileHash": "9e282823",
+      "needsInterop": false
+    }
+  },
+  "chunks": {}
+}
