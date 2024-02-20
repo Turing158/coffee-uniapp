@@ -5,12 +5,13 @@
 			<span class="username" >{{username}}</span>
 			<br />
 			<span class="info">
-				<span class="num">TreeHouse Coffee</span>
+				<span class="subtitle">TreeHouse Coffee</span><br />
+				<span class="num">共点过<span class="snum"> {{num}} </span>杯</span>
 			</span>
 		</div>
 		<div class="usercard" v-show="!isLogin" @click="login()">
 			<img src="https://www.z4a.net/images/2024/01/18/logo.md.jpg" alt="" class="head"/>
-			<span class="notLogin">点击进行微信登录</span>
+			<span class="notLogin">点击进行登录</span>
 		</div>
 	</view>
 </template>
@@ -25,7 +26,7 @@ import { ref } from 'vue';
 		isLogin:Boolean
 	})
 	if(props.isLogin){
-		username.value = props.data.nickName
+		username.value = props.data.name
 		num.value = props.data.num
 		isLogin.value = props.isLogin
 	}
@@ -65,7 +66,7 @@ import { ref } from 'vue';
 		position: relative;
 		left: 20px;
 		top: 12px;
-		font-size: 18px;
+		font-size: 20px;
 	}
 	.info{
 		position: relative;
@@ -76,7 +77,15 @@ import { ref } from 'vue';
 		text-align: center;
 		color: #646464;
 	}
+	.subtitle{
+		color: #88521d;
+		font-weight: bold;
+	}
 	.num{
+		color: #131313;
+		font-weight: bold;
+	}
+	.snum{
 		color: #88521d;
 		font-weight: bold;
 	}

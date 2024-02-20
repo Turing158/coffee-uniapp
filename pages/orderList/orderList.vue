@@ -80,7 +80,8 @@
 					user:data[i].user,
 					date:data[i].date,
 					price:data[i].price,
-					status:data[i].status
+					status:data[i].status,
+					number:data[i].number
 				})
 			}
 			listData.value = list

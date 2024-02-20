@@ -1,10 +1,13 @@
 <template>
 	<view>
 		<div class="user">
+			<loginReg ref="loginRegPage"></loginReg>
 			<div class="cardBg">
 				<image src="https://www.z4a.net/images/2024/01/23/logoIcon.png" style="position: relative;top:50px;width: 262px;height: 110px;"></image>
 			</div>
-			<userCard :data="getUserData" :isLogin="isLogin"></userCard>
+			<div @click="toLogin()">
+				<userCard :data="getUserData" :isLogin="isLogin"></userCard>
+			</div>
 			<div class="main">
 				<div class="status">
 					<div @click="toOrder()" v-if="made != 0">
@@ -60,11 +63,16 @@
 </template>
 
 <script setup>
+	import loginReg from '../../components/loginReg.vue'
 	import userCard from '../../components/userCardUser.vue'
 	import {getUser} from '../../api/user.js'
 	import { ref } from 'vue';
 	const getUserData = uni.getStorageSync('user')
 	const isLogin = ref(false)
+	const loginRegPage = ref()
+	const toLogin = ()=>{
+		loginRegPage.value.toLogin()
+	}
 	if(uni.getStorageSync('isLogin')){
 		isLogin.value = true
 	}
@@ -124,8 +132,6 @@
 				});
 				break;
 		}
-		
-		
 	}
 </script>
 
