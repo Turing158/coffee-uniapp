@@ -172,11 +172,8 @@
 	const carLength = ref(0)
 	const carPrice = ref(0)
 	
-	if((uni.getStorageSync('shoppingCar')).length != 0){
+	if(uni.getStorageSync('shoppingCar') != null){
 		carList.value = uni.getStorageSync('shoppingCar')
-	}
-	else{
-		uni.setStorageSync('shoppingCar',carList.value)
 	}
 	const reflashCar = ()=>{
 		let length = 0

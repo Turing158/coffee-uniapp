@@ -81,18 +81,47 @@
 				"sugar":carList.value[i].sugar
 			})
 		}
-		let order = {
+		var order = {
 			"goods":JSON.stringify(newGoods),
 			"user":uni.getStorageSync('user').user,
 			"price":sum.value,
 			"date":date.toLocaleString(),
 			"status":2,
-			"useform":selectForm.value,
+			"useForm":selectForm.value,
 			"reservation":selectTime.value,
 			"note":note.value
 		}
 		await payOrder(order).then(res=>{
+			let msg = res.data.msg;
+			let status = res.data.status;
+			let data = res.data.data;
+			if(status == 200){
+				uni.showToast({
+					title:"支付订单成功",
+					icon:"success"
+				})
+				uni.setStorageSync('shoppingCar',[])
+				uni.setStorageSync('order',data)
+				uni.reLaunch({
+					url:"/pages/shop/shop"
+				})
+				uni.navigateTo({
+					url:"/pages/orderPage/orderPage"
+				})
+			}
+			else{
+				uni.showToast({
+					title:msg,
+					icon:"none"
+				})
+			}
 			console.log(res);
+		}).catch(err=>{
+			uni.showToast({
+				title: "支付失败,请联系后台！",
+				icon: "none"
+			})
+			console.log(err);
 		})
 	}
 </script>

@@ -23,7 +23,6 @@
 
 <script setup>
 	import { ref } from 'vue'
-	import {getList} from '../../api/orderList.js'
 	import statusComp from '../../components/status.vue'
 	import payShoppingList from '../../components/payShoppingList.vue'
 	import orderInfo from '../../components/orderInfo.vue'

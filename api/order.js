@@ -17,7 +17,7 @@ export const payOrder = (order)=>{
 	params.append('price',order.price);
 	params.append('date',order.date);
 	params.append('status',order.status);
-	params.append('useform',order.useform);
+	params.append('useForm',order.useForm);
 	params.append('reservation',order.reservation);
 	params.append('note',order.note);
 	return request.post('/order/payOrder',params)
