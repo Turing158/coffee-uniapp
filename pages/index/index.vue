@@ -41,6 +41,7 @@
 	const info = ref("")
 	const loading = ref(false)
 	const loginRegPage = ref()
+	// 点击用户卡片
 	const userCardClick = ()=>{
 		if(!loading.value){
 			if(!isLogin.value){
@@ -50,10 +51,6 @@
 	}
 	if(uni.getStorageSync('isLogin')){
 		isLogin.value = true
-	}
-	const show = ref(true)
-	const change = ()=>{
-		show.value = !show.value
 	}
 	onMounted(()=>{
 	

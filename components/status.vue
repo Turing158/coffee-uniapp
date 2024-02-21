@@ -1,3 +1,4 @@
+<!-- 订单页面的顶部状态 -->
 <template>
 	<view>
 		<div class="status">

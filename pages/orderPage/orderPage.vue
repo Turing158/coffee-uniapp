@@ -26,10 +26,12 @@
 	import statusComp from '../../components/status.vue'
 	import payShoppingList from '../../components/payShoppingList.vue'
 	import orderInfo from '../../components/orderInfo.vue'
+	// 获取订单信息
 	const order = uni.getStorageSync('order')
 	const goods =  ref(order.goods)
 	const status = ref(order.status)
 	const number = ref(order.number)
+	// 订单信息
 	const infoObject = ref({
 		id:order.id,
 		useForm:order.useForm,

@@ -1,3 +1,4 @@
+<!-- 主页的用户信息卡片 -->
 <template>
 	<view>
 		<div class="card" v-show="isLogin">

@@ -69,6 +69,7 @@
 		notePage.value.open()
 	}
 	onMounted(()=>{})
+	// 支付订单，待简化
 	const finalPay = async()=>{
 		// loading.value = true
 		let date = new  Date()

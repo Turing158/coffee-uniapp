@@ -1,3 +1,4 @@
+<!-- 调整预约时间组件 -->
 <template>
 	<view>
 		<div class="reservation">
@@ -22,7 +23,6 @@
 <script setup>
 	import { ref,onMounted } from "vue"
 	const props = defineProps(['st'])
-	const emit = defineEmits(['udate'])
 	const selectTimePage = ref()
 	const selectTime = ref(props.st)
 	const date = new Date()
@@ -31,12 +31,12 @@
 	const selectTimePageFn = ()=>{
 		selectTimePage.value.open()
 	}
-	
+	// 选择时间，并将选择的时间存储到本地
 	const selectTimeFn = (i)=>{
 		selectTime.value = i
 		uni.setStorageSync('reservation',i)
 	}
-	
+	//处理时间段
 	time.value.push("立即取餐")
 	let tmpMin = parseInt(date.getMinutes()/10)*10
 	let tmpMinArr = [0,10,20,30,40,50]

@@ -1,7 +1,7 @@
+<!-- 首页的两个按钮 -->
 <template>
 	<view>
 		<div class="operateBtn">
-			
 			<uni-popup ref="tips" :animation="true" type="message" :safe-area="true">
 				<uni-popup-message type="error" message="暂不支持外卖，请前往美团" :duration="2000"></uni-popup-message>
 				</uni-popup>

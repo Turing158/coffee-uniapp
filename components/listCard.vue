@@ -1,3 +1,4 @@
+<!-- 订单列表的一个卡片 -->
 <template>
 	<view>
 		<div class="card">
@@ -18,15 +19,18 @@
 
 <script setup>
 	import { ref,onMounted } from 'vue';
+	// 获取数据
 	const props = defineProps({
 		data:Object
 	})
+	// 数据转为响应式数据
 	const status = ref(props.data.status)
 	const goods = ref(props.data.goods)
 	const date = ref(props.data.date)
 	const price = ref(props.data.price)
 	const num = ref(0)
 	const imgnum = ref(4)
+	// 计算所有商品数量
 	for (var i = 0; i < goods.value.length; i++) {
 		num.value += goods.value[i].num
 	}

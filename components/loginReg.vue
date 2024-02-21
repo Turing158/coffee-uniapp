@@ -1,3 +1,4 @@
+<!-- 如果不使用微信登录，这个通过后台登录 -->
 <template>
 	<view>
 		<div>
@@ -53,9 +54,11 @@
 	const accountReg = ref()
 	const passwordReg = ref()
 	const phoneReg = ref()
+	// 登录注册页面切换
 	const toLogin = ()=>{
 		loginPage.value.open()
 		regPage.value.close()
+		// 将数据清空
 		accountLogin.value = null
 		passwordLogin.value = null
 		accountReg.value = null
@@ -65,13 +68,15 @@
 	const toReg = ()=>{
 		loginPage.value.close()
 		regPage.value.open()
+		// 将数据清空
 		accountLogin.value = null
 		passwordLogin.value = null
 		accountReg.value = null
 		passwordReg.value = null
 		phoneReg.value = null
 	}
-	const confirmLogin = ()=>{
+	// 登录确认
+	const confirmLogin = async()=>{
 		if(accountLogin.value == null || accountLogin.value.length == 0){
 			showtips("请输入账号")
 		}
@@ -80,15 +85,17 @@
 		}
 		else{
 			showtips("登录中...")
-			login(accountLogin.value,passwordLogin.value).then(res=>{
+			// 通过api后台登录
+			await login(accountLogin.value,passwordLogin.value).then(res=>{
 				let data = res.data.data
 				let status = res.data.status
 				let msg = res.data.msg
 				if(status == 200){
-					console.log(data);
 					showtips("登录成功")
 					uni.setStorageSync('isLogin',true)
+					// 将数据本地化存储
 					uni.setStorageSync('user',data)
+					// 刷新页面
 					uni.reLaunch({
 						url: '/pages/index/index'
 					})
@@ -98,10 +105,10 @@
 				}
 			}).catch(err=>{
 				showtips("服务器错误")
-				console.log(err);
 			})
 		}
 	}
+	// 注册确认
 	const confirmReg = async()=>{
 		if(accountReg.value == null || accountReg.value.length == 0){
 			showtips("请输入账号")
@@ -120,6 +127,7 @@
 		}
 		else{
 			showtips("注册中...")
+			// 通过api后台注册
 			await reg(accountReg.value,passwordReg.value,phoneReg.value).then(res=>{
 				let data = res.data.data
 				let status = res.data.status
@@ -131,19 +139,19 @@
 				else{
 					showtips(msg)
 				}
-				console.log(res);
 			}).catch(err=>{
 				showtips("服务器错误")
-				console.log(err);
 			})
 		}
 	}
+	// 提示框
 	const showtips = (str)=>{
 		uni.showToast({
 			title: str,
 			icon: 'none'
 		})
 	}
+	// 暴露方法，让父组件能访问到这个组件的toLogin方法
 	defineExpose({
 		toLogin
 	})

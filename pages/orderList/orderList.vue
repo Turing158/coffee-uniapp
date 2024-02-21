@@ -6,7 +6,6 @@
 				<div  v-for="i in listData" @click="checkOrder(i)">
 					<listCard class="cardOut" :data="i"></listCard>
 				</div>
-				
 			</div>
 			<div class="buttom"></div>
 			<uni-load-more :status="status" iconType="circle" @clickLoadMore="loadMore()"></uni-load-more>
@@ -27,13 +26,7 @@
 		status.value = 'loading'
 		getUserOrderList()
 	}
-	const getGoodsInf = (id)=>{
-		for (var i = 0; i < goodsList.value.length; i++) {
-			if(id === goodsList.value[i].id){
-				return goodsList.value[i]
-			}
-		}
-	}
+	// 获取用户订单列表
 	const getUserOrderList = async ()=>{
 		if(uni.getStorageSync('isLogin')){
 			let userObj = uni.getStorageSync('user')
@@ -79,8 +72,8 @@
 			icon: 'none'
 		});
 	}
+	// 查看订单详情
 	const checkOrder = (item)=>{
-		console.log(item);
 		uni.setStorageSync('order',item)
 		uni.navigateTo({
 			url:'/pages/orderPage/orderPage'

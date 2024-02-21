@@ -1,3 +1,4 @@
+<!-- 支付页面的购物袋组件 -->
 <template>
 	<view>
 		<div class="payShoppingList">
@@ -25,6 +26,7 @@
 	const props =  defineProps(['data'])
 	const data = ref(props.data)
 	const sum = ref(0)
+	//计算总价
 	for (var i = 0; i < props.data.length; i++) {
 		sum.value += props.data[i].price*props.data[i].num
 	}

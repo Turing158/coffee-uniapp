@@ -69,14 +69,17 @@
 	const getUserData = uni.getStorageSync('user')
 	const isLogin = ref(false)
 	const loginRegPage = ref()
+	
 	if(uni.getStorageSync('isLogin')){
 		isLogin.value = true
 	}
+	// 点击用户卡片
 	const toLogin = ()=>{
 		if(!isLogin.value){
 			loginRegPage.value.toLogin()
 		}
 	}
+	// 调整中间的订单状态
 	const made = ref(0)
 	const complete = ref(0)
 	const orderList = ref([])

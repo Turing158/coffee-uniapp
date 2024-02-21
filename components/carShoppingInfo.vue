@@ -1,3 +1,4 @@
+<!-- 购物车商品信息组件 -->
 <template>
 	<view>
 		<div class="carShopping">
@@ -13,14 +14,17 @@
 
 <script setup>
 import { ref } from 'vue';
+	//从父组件中获取数据
 	const props = defineProps({
 		data:Object
 	})
+	//将数据转换成响应式数据
 	const name = ref(props.data.name)
 	const img = ref(props.data.img)
 	const temperature = ref(props.data.temperature)
 	const sugar = ref(props.data.sugar)
 	const special = ref("")
+	// 处理有无特殊项[温度和糖量]
 	if(temperature.value == null){
 		special.value = ""
 	}

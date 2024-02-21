@@ -1,3 +1,4 @@
+<!-- 商品信息组件 -->
 <template>
 	<view>
 		<div class="card">
@@ -15,9 +16,11 @@
 
 <script setup>
 import { ref } from 'vue';
+	// 从父组件获取数据
 	const props = defineProps({
 		data:Object
 	})
+	// 将数据转换成响应式数据
 	const name = ref(props.data.name)
 	const img = ref(props.data.img)
 	const introduce = ref(props.data.introduce)
