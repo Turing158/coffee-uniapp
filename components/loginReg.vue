@@ -197,7 +197,8 @@
 		display:inline-block;
 		width: 100px;
 		height: 40px;
-		background-color: #f1f1f1;
+		background-color: #4D3900;
+		color: #f1f1f1;
 		margin: 0 20px;
 		box-sizing: none;
 	}

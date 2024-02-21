@@ -41,8 +41,9 @@
 
 <script setup>
 	import reservation from "../../components/reservation.vue"
-	import { onMounted, ref } from "vue"
 	import payShoppingList from "../../components/payShoppingList.vue"
+	import { onMounted, ref } from "vue"
+	import { payOrder } from "../../api/order.js"
 	const selectForm = ref("店内享受")
 	const selectTime = ref("立即取餐")
 	uni.setStorageSync('reservation',"立即取餐")
@@ -68,10 +69,31 @@
 		notePage.value.open()
 	}
 	onMounted(()=>{})
-	const testMsg = ref("")
-	import md5 from  'js-md5'
 	const finalPay = async()=>{
-		
+		// loading.value = true
+		let date = new  Date()
+		let newGoods = []
+		for (var i = 0; i < carList.value.length; i++) {
+			newGoods.push({
+				"id":carList.value[i].id,
+				"num":carList.value[i].num,
+				"temperature":carList.value[i].temperature,
+				"sugar":carList.value[i].sugar
+			})
+		}
+		let order = {
+			"goods":JSON.stringify(newGoods),
+			"user":uni.getStorageSync('user').user,
+			"price":sum.value,
+			"date":date.toLocaleString(),
+			"status":2,
+			"useform":selectForm.value,
+			"reservation":selectTime.value,
+			"note":note.value
+		}
+		await payOrder(order).then(res=>{
+			console.log(res);
+		})
 	}
 </script>
 

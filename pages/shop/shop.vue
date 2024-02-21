@@ -51,6 +51,7 @@
 			<uni-popup ref="carShopping" :animation="true" type="bottom" :is-mask-click="true" :safe-area="true" :mask-click="closeCar()">
 				<div class="carShopping">
 					<div class="title">购物袋</div>
+					<div class="clear" @click="clearCar()"><uni-icons type="trash-filled" color="4D3900" size="20"></uni-icons></div>
 					<div v-for="(i,d) in carList">
 						<carShoppingInfo :data="i">
 							<div class="operateBtn">
@@ -97,6 +98,7 @@
 			for (var i = 0; i < data.length; i++) {
 				if(data[i].type === '酥点'){
 					temp.push({
+						id:data[i].id,
 						name:data[i].name,
 						img:data[i].img,
 						introduce:data[i].introduce,
@@ -115,6 +117,7 @@
 						
 					}
 					temp.push({
+						id:data[i].id,
 						name:data[i].name,
 						img:data[i].img,
 						introduce:data[i].introduce,
@@ -126,7 +129,6 @@
 				}
 			}
 			goodsList.value = temp
-			console.log(goodsList.value);
 		}).catch(err=>{
 			console.log(err);
 		})
@@ -206,6 +208,7 @@
 			}
 			if(!flag){
 				carList.value.push({
+					id:item.id,
 					name:item.name,
 					img:item.img,
 					num:1,
@@ -270,6 +273,7 @@
 		if(flag){
 			if(item.sugar != null){
 				carList.value.push({
+					id:item.id,
 					name:item.name,
 					img:item.img,
 					num:1,
@@ -277,7 +281,6 @@
 					sugar:selectSugar.value,
 					price:item.price
 				})
-				
 				addmsg('已添加 '+item.name+'['+selectTemperature.value+'/'+selectSugar.value+']')
 			}
 			else{
@@ -304,6 +307,11 @@
 	}
 	const closeCar = ()=>{
 		reflashCar()
+	}
+	const clearCar = ()=>{
+		carList.value = []
+		reflashCar()
+		carShopping.value.close()
 	}
 	const toPay = ()=>{
 		// uni.navigateTo({
@@ -550,6 +558,11 @@
 		left: 20px;
 		font-size: 12px;
 		font-weight: 100;
+	}
+	.carShopping .clear{
+		position: absolute;
+		top: 10px;
+		right: 20px;
 	}
 	.operateBtn{
 		position: absolute;
