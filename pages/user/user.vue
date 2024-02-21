@@ -65,7 +65,6 @@
 <script setup>
 	import loginReg from '../../components/loginReg.vue'
 	import userCard from '../../components/userCardUser.vue'
-	import {getUser} from '../../api/user.js'
 	import { ref } from 'vue';
 	const getUserData = uni.getStorageSync('user')
 	const isLogin = ref(false)
