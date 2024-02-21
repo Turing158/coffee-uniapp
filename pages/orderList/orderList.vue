@@ -18,7 +18,7 @@
 <script setup>
 	import { ref,onMounted } from 'vue'
 	import listCard from '../../components/listCard.vue'
-	import {getList,getOrderList} from '../../api/order.js'
+	import {getOrderList} from '../../api/order.js'
 	import {getGoods} from '../../api/shop.js'
 	const goodsList = ref([])
 	const listData = ref([])

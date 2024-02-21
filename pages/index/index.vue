@@ -34,7 +34,6 @@
 	import userCard from '../../components/userCardIndex.vue'
 	import operateBtn from '../../components/operateBtn.vue'
 	import loginReg from '../../components/loginReg.vue'
-	import {getUser} from '../../api/user.js'
 	import { ref,onMounted } from 'vue'
 	const tips = ref()
 	const isLogin = ref(false)
