@@ -91,7 +91,7 @@
 		}
 		return temp
 	}
-	// 获取商品列表，待简化
+	// 获取商品列表
 	const getGoodsList = async()=>{
 		await getGoods().then(res=>{
 			let data = res.data.data
