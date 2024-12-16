@@ -1,20 +1,34 @@
-import request from '../util/request'
+const baseurl =  'http://localhost:8080'
 //获取当前用户所有订单
 export const getOrderList = (user)=>{
-	let params = new URLSearchParams()
-	params.append('user',user)
-	return request.post('/order/findAll',params)
+	return uni.request({
+		url: baseurl+'/order/findAll',
+		method: 'POST',
+		header:{
+			'content-type':'application/x-www-form-urlencoded'
+		},
+		data: {
+			user,	
+		}
+	})
 }
 //支付订单到后台
 export const payOrder = (order)=>{
-	let params = new URLSearchParams()
-	params.append('goods',order.goods);
-	params.append('user',order.user);
-	params.append('price',order.price);
-	params.append('date',order.date);
-	params.append('status',order.status);
-	params.append('useForm',order.useForm);
-	params.append('reservation',order.reservation);
-	params.append('note',order.note);
-	return request.post('/order/payOrder',params)
+	return uni.request({
+		url: baseurl+'/order/payOrder',
+		method: 'POST',
+		header:{
+			'content-type':'application/x-www-form-urlencoded'
+		},
+		data: {
+			"goods" : order.goods,
+			"user" : order.user,
+			"price" : order.price,
+			"date" : order.date,
+			"status" : order.status,
+			"useForm" : order.useForm,
+			"reservation" : order.reservation,
+			"note" : order.note,
+		}
+	})
 }

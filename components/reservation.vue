@@ -35,6 +35,7 @@
 	const selectTimeFn = (i)=>{
 		selectTime.value = i
 		uni.setStorageSync('reservation',i)
+		selectTimePage.value.close()
 	}
 	//处理时间段
 	time.value.push("立即取餐")

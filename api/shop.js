@@ -1,5 +1,8 @@
-import request from '../util/request'
+const baseurl =  'http://localhost:8080'
 //获取所有商品信息
 export const getGoods = async()=>{
-	return request.get('/goods/findAll')
+	return uni.request({
+		url: baseurl+'/goods/findAll',
+		method: 'GET'
+	})
 }

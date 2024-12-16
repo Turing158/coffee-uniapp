@@ -87,6 +87,7 @@
 			showtips("登录中...")
 			// 通过api后台登录
 			await login(accountLogin.value,passwordLogin.value).then(res=>{
+				console.log(res)
 				let data = res.data.data
 				let status = res.data.status
 				let msg = res.data.msg

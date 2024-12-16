@@ -173,7 +173,7 @@
 	const carLength = ref(0)
 	const carPrice = ref(0)
 	
-	if(uni.getStorageSync('shoppingCar') != null){
+	if(uni.getStorageSync('shoppingCar') != null && uni.getStorageSync('shoppingCar') != ""){
 		carList.value = uni.getStorageSync('shoppingCar')
 	}
 	const reflashCar = ()=>{
@@ -423,13 +423,14 @@
 		position: fixed;
 		width: 90vw;
 		height: 50px;
-		/* 这个bottom在h5上得用这个来显示，若要导入到小程序，得注释掉这个 */
-		bottom: 70px;
-		// bottom: 5px;
 		left: 5vw;
 		background-color: #ffffff;
 		z-index: 10;
 		border-radius: 10px;
+		
+		bottom: 5px;
+		// 下面这条注释用h5看效果时用
+		// bottom: 70px;
 	}
 	.car .img{
 		width: 35px;
@@ -475,9 +476,9 @@
 		width: 100vw;
 		background-color: #fafafa;
 		border-radius: 10px 10px 0 0;
+		bottom: -80rpx;
 		// 下面这条注释用h5看效果时用
-		bottom: 65px;
-		// bottom: -40px;
+		// bottom: 110rpx;
 	}
 	.selectGoodsInSugar{
 		height: 320px;
@@ -536,12 +537,12 @@
 		position: relative;
 		min-height: 50px;
 		width: 100vw;
-		// 下面这条注释用h5看效果时用
-		bottom: 60px;
-		// bottom: -40px;
 		background-color: #fff;
 		z-index: 12;
 		border-radius: 10px 10px 0 0;
+		bottom: -80rpx;
+		// 下面这条注释用h5看效果时用
+		// bottom: 120rpx;
 	}
 	.carShopping .buttom{
 		position: relative;

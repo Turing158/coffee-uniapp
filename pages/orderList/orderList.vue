@@ -25,6 +25,9 @@
 	const loadMore = ()=>{
 		status.value = 'loading'
 		getUserOrderList()
+		uni.reLaunch({
+			url:'/pages/orderList/orderList'
+		})
 	}
 	// 获取用户订单列表
 	const getUserOrderList = async ()=>{
@@ -79,6 +82,12 @@
 			url:'/pages/orderPage/orderPage'
 		})
 	}
+	uni.$on('reflashOrderList',(data)=>{
+		getUserOrderList()
+		uni.reLaunch({
+			url:'/pages/orderList/orderList'
+		})
+	})
 </script>
 
 <style scoped>

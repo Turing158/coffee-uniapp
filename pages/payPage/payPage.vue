@@ -72,7 +72,7 @@
 	// 支付订单，待简化
 	const finalPay = async()=>{
 		// loading.value = true
-		let date = new  Date()
+		let date = new Date()
 		let newGoods = []
 		for (var i = 0; i < carList.value.length; i++) {
 			newGoods.push({
@@ -86,7 +86,7 @@
 			"goods":JSON.stringify(newGoods),
 			"user":uni.getStorageSync('user').user,
 			"price":sum.value,
-			"date":date.toLocaleString(),
+			"date":date.getFullYear() + "/" + (date.getMonth()+1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" +date.getSeconds(),
 			"status":2,
 			"useForm":selectForm.value,
 			"reservation":selectTime.value,
@@ -106,6 +106,7 @@
 				uni.reLaunch({
 					url:"/pages/shop/shop"
 				})
+				uni.$emit('reflashOrderList')
 				uni.navigateTo({
 					url:"/pages/orderPage/orderPage"
 				})
@@ -116,7 +117,6 @@
 					icon:"none"
 				})
 			}
-			console.log(res);
 		}).catch(err=>{
 			uni.showToast({
 				title: "支付失败,请联系后台！",
@@ -125,6 +125,7 @@
 			console.log(err);
 		})
 	}
+	
 </script>
 
 <style scoped>
